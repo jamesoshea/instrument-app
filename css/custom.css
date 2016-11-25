@@ -1,0 +1,46 @@
+body {
+	background-color:#ADA99E;
+	color:#5F594C;
+}
+
+h1 {
+	padding-top: 15px;
+	padding-bottom: 1.5rem;
+}
+
+i {
+	color:#5F594C;
+}
+
+.container {
+	text-align:center;
+	background-color:#D6D2CA;
+	min-height:100%;
+	border-radius: 5px;
+}
+
+.key {
+	width: 12%;
+	border-color: #ADA99E;
+}
+
+.button-primary {
+	background-color: #5F594C;
+	color:#D6D2CA;
+}
+
+.hello {
+	margin-bottom: 1rem;
+}
+
+#menu-switch {
+	display:none;
+}
+
+#options {
+	display:none;
+}
+
+#note-display {
+	display:none;
+}
