@@ -7,26 +7,9 @@ TODO:
 */
 
 
-
-
-
-//don't just drink a MIDI!
-window.onload = function() {
-	MIDI.loadPlugin({
-		soundfontUrl: "./soundfont/",
-		instrument: "acoustic_grand_piano",
-		onprogress: function(state, progress) {
-			console.log(state, progress);
-		},
-		onsuccess: function() {
-			console.log("hello!");
-		}
-	});
-};
-
 $(document).ready(function(){
+
 	var rootNote = 46;
-	var rows = 3;
 	var keys = {"0": "z",
 							"1": "x",
 							"2": "c",
@@ -55,11 +38,8 @@ $(document).ready(function(){
 				keyboardJS.bind(keys[i], function(e) {
 					//stops a key hold triggering the note over and over
 					e.preventRepeat();
-					var delay = 0;
 					var note = rootNote + i;
-					var velocity = 127;
-					MIDI.setVolume(0, 127);
-					MIDI.noteOn(0, note, velocity, delay);
+					playNote(note);
 					var ts = "#" + i;
 				  $(ts).addClass("button-primary");
 				  $("#note-display").text(MIDI.noteToKey[note]);
@@ -67,7 +47,7 @@ $(document).ready(function(){
 					var ts = "#" + i;
 				  $(ts).removeClass("button-primary");
 					var note = rootNote + i;
-					MIDI.noteOff(0, note, 0);
+					stopNote(note);
 				});		
 		}
 		for (var i = 0; i < 20; i++) {
@@ -78,7 +58,6 @@ $(document).ready(function(){
 	function octaveUp() {
 		if (rootNote <= 77) {
 			rootNote += 12;
-			console.log(rootNote);
 			keyboardJS.reset();
 			bindIt(rootNote);
 			$("#oct-up").animate({
@@ -94,7 +73,6 @@ $(document).ready(function(){
 	function octaveDown() {
 		if (rootNote > 32) {
 			rootNote -= 12;
-			console.log(rootNote);
 			keyboardJS.reset();
 			bindIt(rootNote);
 			$("#oct-down").animate({
@@ -110,7 +88,6 @@ $(document).ready(function(){
 	function noteUp() {
 		if (rootNote < 89) {
 			rootNote += 1;
-			console.log(rootNote);
 			keyboardJS.reset();
 			bindIt(rootNote);
 			$("#note-up").animate({
@@ -124,9 +101,8 @@ $(document).ready(function(){
 	}
 
 	function noteDown() {
-		if (rootNote > 20) {
+		if (rootNote > 21) {
 			rootNote -= 1;
-			console.log(rootNote);
 			keyboardJS.reset();
 			bindIt(rootNote);
 			$("#note-down").animate({
@@ -166,7 +142,36 @@ $(document).ready(function(){
 		noteUp();
 	});
 
-	bindIt(rootNote);
+	$("#saw-sel").on("click", function() {
+	console.log("butts");
+	osc = T("saw");
+	synthInit();
+	});
 
-	console.log(MIDI.noteToKey);
+	$("#saw-sel").on("click", function() {
+	console.log("butts");
+	osc = T("saw");
+	synthInit();
+	});
+
+	$("#sine-sel").on("click", function() {
+	console.log("butts");
+	osc = T("sin");
+	synthInit();
+	});
+
+	$("#tri-sel").on("click", function() {
+	console.log("butts");
+	osc = T("tri");
+	synthInit();
+	});
+
+	$("#pulse-sel").on("click", function() {
+	console.log("butts");
+	osc = T("pulse");
+	synthInit();
+	});
+
+	bindIt(rootNote);
+	synthInit();
 });
