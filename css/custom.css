@@ -12,6 +12,10 @@ i {
 	color:#5F594C;
 }
 
+input[type=range] {
+	height:10px;
+}
+
 .container {
 	text-align:center;
 	background-color:#D6D2CA;
@@ -31,6 +35,11 @@ i {
 
 .hello {
 	margin-bottom: 1rem;
+}
+
+.synth-params {
+	text-align: left;
+	padding-left: 15%;
 }
 
 #menu-switch {
