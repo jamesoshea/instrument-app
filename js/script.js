@@ -3,25 +3,22 @@ var	env = T("adsr", {a:100,d:250,s:0.6,r:500}, T("sin")).on("ended", function() 
 	  this.pause();
 	}).bang();
 
-function freqToMidi(freq) {
-return 69 + 12 * Math.log2((freq/440));
-}
-
-function midiToFreq(mNote) {
-	return Math.pow(2, (mNote - 69)/12) * 440;
-}
-
 function synthInit() {
 	oscenv = T("OscGen", {osc:osc, env:env, mul:0.15}).play();
 	velocity = 99;
 }
 
+	/* note conversions
+	--------------------------------------------------- */
+	var keyToNote = {}; // C8  == 108
+	var noteToKey = {}; // 108 ==  C8
 
-function playNote(note) {
-
-	oscenv.noteOn(note, velocity);
-}
-
-function stopNote(note) {
-	oscenv.noteOff(note);
+	var A0 = 0x15; // first note
+	var C8 = 0x6C; // last note
+	var number2key = ['C', 'Db', 'D', 'Eb', 'E', 'F', 'Gb', 'G', 'Ab', 'A', 'Bb', 'B'];
+	for (var n = A0; n <= C8; n++) {
+		var octave = (n - 12) / 12 >> 0;
+		var name = number2key[n % 12] + octave;
+		keyToNote[name] = n;
+		noteToKey[n] = name;
 }

@@ -1,11 +1,7 @@
 /*
-
 TODO:
   		map out some new constellations on pen and paper
-  		row picker
-
 */
-
 
 $(document).ready(function(){
 
@@ -39,15 +35,15 @@ $(document).ready(function(){
 					//stops a key hold triggering the note over and over
 					e.preventRepeat();
 					var note = rootNote + i;
-					playNote(note);
+					oscenv.noteOn(note, velocity);
 					var ts = "#" + i;
 				  $(ts).addClass("button-primary");
-				  $("#note-display").text(MIDI.noteToKey[note]);
+				  $("#note-display").text(noteToKey[note]);
 				}, function(e) {
 					var ts = "#" + i;
 				  $(ts).removeClass("button-primary");
 					var note = rootNote + i;
-					stopNote(note);
+					oscenv.noteOff(note);	
 				});		
 		}
 		for (var i = 0; i < 20; i++) {
@@ -117,7 +113,6 @@ $(document).ready(function(){
 
 	keyboardJS.bind('', function(e){
 		$("#message").slideUp(1000);
-		$("#message").fadeOut(500);
 		$("#note-display").slideDown(600);
 		$("#menu-switch").slideDown(600);
 	});
@@ -148,13 +143,7 @@ $(document).ready(function(){
 	synthInit();
 	});
 
-	$("#saw-sel").on("click", function() {
-	console.log("butts");
-	osc = T("saw");
-	synthInit();
-	});
-
-	$("#sine-sel").on("click", function() {
+	$("#sin-sel").on("click", function() {
 	console.log("butts");
 	osc = T("sin");
 	synthInit();
