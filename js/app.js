@@ -1,8 +1,3 @@
-/*
-TODO:
-  		map out some new constellations on pen and paper
-*/
-
 $(document).ready(function(){
 
 	var rootNote = 46;
@@ -160,7 +155,6 @@ $(document).ready(function(){
 	osc = T("pulse");
 	synthInit();
 	});
-
 	bindIt(rootNote);
 	synthInit();
 });
