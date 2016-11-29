@@ -43,8 +43,8 @@ $(document).ready(function(){
 					//stops a key hold triggering the note over and over
 					e.preventRepeat();
 					var note = rootNote + i;
-					oscenv.noteOn(note, velocity);
-					osc2env.noteOn(note, velocity);
+					oscenv.noteOn(note, velocity1);
+					osc2env.noteOn(note, velocity2);
 					var ts = "#" + i;
 				  $(ts).addClass("button-primary");
 				  $("#note-display").text(noteToKey[note]);
