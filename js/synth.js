@@ -27,5 +27,4 @@ function synthInit() {
 	oscenv = T("OscGen", {osc:osc, env:env, mul:0.15}).play();
 	velocity2 = env2settings.v;
 	osc2env = T("OscGen", {osc:osc2, env:env2, mul:0.15}).play();
-	console.log("changed!");
 }
