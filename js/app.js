@@ -44,7 +44,19 @@ $(document).ready(function(){
 		for (var i = 0; i < 20; i++) {
 			keyFunctions[i] = keybindFunction(i);
 		}
-	}	
+	}
+
+
+
+	keyboardJS.bind('', function(e){
+		$("#message").slideUp(1000);
+		$("#note-display").slideDown(600);
+		$("#menu-switch").slideDown(600);
+	});
+
+	$("#menu-switch").on("click", function() {
+		$("#options").slideToggle(600);
+	});
 
 	function octaveUp() {
 		if (rootNote <= 77) {
@@ -106,16 +118,6 @@ $(document).ready(function(){
 		}		
 	}
 
-	keyboardJS.bind('', function(e){
-		$("#message").slideUp(1000);
-		$("#note-display").slideDown(600);
-		$("#menu-switch").slideDown(600);
-	});
-
-	$("#menu-switch").on("click", function() {
-		$("#options").slideToggle(600);
-	});
-
 	$("#oct-down").on("click", function() {
 		octaveDown();
 	});
@@ -132,29 +134,24 @@ $(document).ready(function(){
 		noteUp();
 	});
 
-	$("#saw-sel").on("click", function() {
-	console.log("butts");
-	osc = T("saw");
-	synthInit();
-	});
 
-	$("#sin-sel").on("click", function() {
-	console.log("butts");
-	osc = T("sin");
-	synthInit();
-	});
 
-	$("#tri-sel").on("click", function() {
-	console.log("butts");
-	osc = T("tri");
-	synthInit();
-	});
+		/* note conversions
+	--------------------------------------------------- */
+	var keyToNote = {}; // C8  == 108
+	var noteToKey = {}; // 108 ==  C8
 
-	$("#pulse-sel").on("click", function() {
-	console.log("butts");
-	osc = T("pulse");
-	synthInit();
-	});
+	var A0 = 0x15; // first note
+	var C8 = 0x6C; // last note
+	var number2key = ['C', 'Db', 'D', 'Eb', 'E', 'F', 'Gb', 'G', 'Ab', 'A', 'Bb', 'B'];
+	for (var n = A0; n <= C8; n++) {
+		var octave = (n - 12) / 12 >> 0;
+		var name = number2key[n % 12] + octave;
+		keyToNote[name] = n;
+		noteToKey[n] = name;
+	}
+
+
 	bindIt(rootNote);
 	synthInit();
 });
