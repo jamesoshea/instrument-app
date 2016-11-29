@@ -1,16 +1,22 @@
+
 //slider outputs
 function updateOutput(val, target, param) {
-$(target).text(val);
+	$(target).text(val);
 	envsettings[param] = Number(val);
 	console.log(envsettings);
 	synthInit();
 }
 function updateOutput2(val, target, param) {
-$(target).text(val);
+	$(target).text(val);
 	env2settings[param] = Number(val);
 	console.log(env2settings);
 	synthInit();
 }
+
+function updateOct2(val, target){
+	$(target).text(val);
+}
+
 $(document).ready(function(){
 
 	var rootNote = 46;
@@ -78,6 +84,7 @@ $(document).ready(function(){
 	function octaveUp() {
 		if (rootNote <= 77) {
 			rootNote += 12;
+			rootNote2 += 12;
 			keyboardJS.reset();
 			bindIt(rootNote);
 			$("#oct-up").animate({
@@ -93,6 +100,7 @@ $(document).ready(function(){
 	function octaveDown() {
 		if (rootNote > 32) {
 			rootNote -= 12;
+			rootNote2 -= 12;
 			keyboardJS.reset();
 			bindIt(rootNote);
 			$("#oct-down").animate({
@@ -108,6 +116,7 @@ $(document).ready(function(){
 	function noteUp() {
 		if (rootNote < 89) {
 			rootNote += 1;
+			rootNote2 += 1;
 			keyboardJS.reset();
 			bindIt(rootNote);
 			$("#note-up").animate({
@@ -123,6 +132,7 @@ $(document).ready(function(){
 	function noteDown() {
 		if (rootNote > 21) {
 			rootNote -= 1;
+			rootNote2 -= 1;
 			keyboardJS.reset();
 			bindIt(rootNote);
 			$("#note-down").animate({
@@ -160,7 +170,8 @@ $(document).ready(function(){
 
 	function waveSelector(i){
 		$(selectors[i]).on("click", function() {
-		console.log("butts");
+		$(".wave-sel").removeClass("button-primary");
+		$(selectors[i]).addClass("button-primary");
 		osc = T(waveforms[i]);
 		synthInit();
 		});
@@ -168,7 +179,8 @@ $(document).ready(function(){
 
 	function waveSelector2(i){
 		$(selectors2[i]).on("click", function() {
-		console.log("butts");
+		$(".wave-sel-2").removeClass("button-primary");
+		$(selectors2[i]).addClass("button-primary");
 		osc2 = T(waveforms[i]);
 		synthInit();
 		});

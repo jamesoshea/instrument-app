@@ -37,10 +37,13 @@ input[type=range] {
 	margin-bottom: 1rem;
 }
 
-.sliders {
-
+.wave-sel {
+	width:15%;
 }
 
+.wave-sel-2 {
+	width:15%;
+}
 
 #menu-switch {
 	display:none;
