@@ -1,8 +1,8 @@
 // TO DO: abstract this out to all sliders (add another argument)
 
-function updateOutput(val, target) {
+function updateOutput(val, target, param) {
 $(target).text(val);
-	envsettings.a = Number(val);
+	envsettings[param] = Number(val);
 	console.log(envsettings);
 	synthInit();
 }

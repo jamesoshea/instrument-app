@@ -81,10 +81,10 @@
         <h5><i class="fa fa-minus" aria-hidden="true" id="oct-down"></i>&nbsp;&nbsp;octave&nbsp;&nbsp;<i class="fa fa-plus" aria-hidden="true" id="oct-up"></i></h5>
       </div>
       <div class="six columns synth-params">
-        Attack: <input type="range" min="0" max="1000" step="10" value="0" id="fd-att" oninput="updateOutput(value, '#att-out')"><span id="att-out">0</span><br />
-        Decay:<input type="range" min="0" max="1000" step="10" value="250" id="fd-decay" oninput="updateOutput(value, '#dec-out')"><span id="dec-out">250</span><br />
-        Sustain:<input type="range" min="0" max="1" step="0.01" value="0.6" id="fd-sus" oninput="updateOutput(value, '#sus-out')"><span id="sus-out">0.6</span><br />
-        Release:<input type="range" min="0" max="500" step="5" value="0" id="fd-rel" oninput="updateOutput(value, '#rel-out')"><span id="rel-out">0</span>
+        Attack: <input type="range" min="0" max="1000" step="10" value="0" id="fd-att" oninput="updateOutput(value, '#att-out', 'a')"><span id="att-out">0</span><br />
+        Decay:<input type="range" min="0" max="1000" step="10" value="250" id="fd-decay" oninput="updateOutput(value, '#dec-out', 'd')"><span id="dec-out">250</span><br />
+        Sustain:<input type="range" min="0" max="1" step="0.01" value="0.6" id="fd-sus" oninput="updateOutput(value, '#sus-out', 's')"><span id="sus-out">0.6</span><br />
+        Release:<input type="range" min="0" max="500" step="5" value="0" id="fd-rel" oninput="updateOutput(value, '#rel-out', 'r')"><span id="rel-out">0</span>
       </div>
     </div>
   </div>
