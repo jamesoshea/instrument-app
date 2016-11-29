@@ -175,7 +175,6 @@ $(document).ready(function(){
 		noteToKey[n] = name;
 	}
 
-
 	bindIt(rootNote);
 	synthInit();
 });

@@ -58,32 +58,52 @@
   <h3 id="note-display"></h3>
   <p id="menu-switch">options</p>
   <div id="options">
-    <h5>wave type:</h5>
     <div class="row">
-      <div class="four columns">&nbsp;</div>
-      <div class="one column">
-        <p id="sin-sel">sin</p>
-      </div>
-      <div class="one column">
-        <p id="tri-sel">tri</p>
-      </div>
-      <div class="one column">
-        <p id="saw-sel">saw</p>
-      </div>
-      <div class="one column">
-        <p id="pulse-sel">pulse</p>
-      </div>            
-    </div>
-    <div class="row">
-      <div class="six columns">
+      <div class="four columns">
         <h5><i class="fa fa-minus" aria-hidden="true" id="note-down"></i>&nbsp;&nbsp;root note&nbsp;&nbsp;<i class="fa fa-plus" aria-hidden="true" id="note-up"></i></h5>
         <h5><i class="fa fa-minus" aria-hidden="true" id="oct-down"></i>&nbsp;&nbsp;octave&nbsp;&nbsp;<i class="fa fa-plus" aria-hidden="true" id="oct-up"></i></h5>
       </div>
-      <div class="six columns synth-params">
+      <div class="four columns synth-params">
+        <h5>oscillator 1 wave type:</h5>
+        <div class="row">
+          <div class="one column">
+            <p id="sin-sel">sin</p>
+          </div>
+          <div class="one column">
+            <p id="tri-sel">tri</p>
+          </div>
+          <div class="one column">
+            <p id="saw-sel">saw</p>
+          </div>
+          <div class="one column">
+            <p id="pulse-sel">pulse</p>
+          </div>            
+        </div>
         Attack: <input type="range" min="0" max="1000" step="10" value="0" id="fd-att" oninput="updateOutput(value, '#att-out', 'a')"><span id="att-out">0</span><br />
         Decay:<input type="range" min="0" max="1000" step="10" value="250" id="fd-decay" oninput="updateOutput(value, '#dec-out', 'd')"><span id="dec-out">250</span><br />
         Sustain:<input type="range" min="0" max="1" step="0.01" value="0.6" id="fd-sus" oninput="updateOutput(value, '#sus-out', 's')"><span id="sus-out">0.6</span><br />
         Release:<input type="range" min="0" max="500" step="5" value="0" id="fd-rel" oninput="updateOutput(value, '#rel-out', 'r')"><span id="rel-out">0</span>
+      </div>
+      <div class="four columns synth-params">
+        <h5>oscillator 2 wave type:</h5>
+        <div class="row">
+          <div class="one column">
+            <p id="sin-sel-2">sin</p>
+          </div>
+          <div class="one column">
+            <p id="tri-sel-2">tri</p>
+          </div>
+          <div class="one column">
+            <p id="saw-sel-2">saw</p>
+          </div>
+          <div class="one column">
+            <p id="pulse-sel-2">pulse</p>
+          </div>            
+        </div>
+        Attack: <input type="range" min="0" max="1000" step="10" value="0" id="fd-att-2" oninput="updateOutput2(value, '#att-out-2', 'a')"><span id="att-out-2">0</span><br />
+        Decay:<input type="range" min="0" max="1000" step="10" value="250" id="fd-decay-2" oninput="updateOutput2(value, '#dec-out-2', 'd')"><span id="dec-out-2">250</span><br />
+        Sustain:<input type="range" min="0" max="1" step="0.01" value="0.6" id="fd-sus-2" oninput="updateOutput2(value, '#sus-out-2', 's')"><span id="sus-out-2">0.6</span><br />
+        Release:<input type="range" min="0" max="500" step="5" value="0" id="fd-rel-2" oninput="updateOutput2(value, '#rel-out-2', 'r')"><span id="rel-out-2">0</span>
       </div>
     </div>
   </div>
