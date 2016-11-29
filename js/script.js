@@ -1,11 +1,18 @@
+var envsettings = {
+	a:1000,
+	d:250,
+	s:0.6,
+	r:0
+}
+
 var	osc = T("sin");
-var	env = T("adsr", {a:100,d:250,s:0.6,r:500}, T("sin")).on("ended", function() {
+var	env = T("adsr", envsettings, T("sin")).on("ended", function() {
 	  this.pause();
 	}).bang();
 
 function synthInit() {
 	oscenv = T("OscGen", {osc:osc, env:env, mul:0.15}).play();
-	velocity = 99;
+	velocity = 127;
 }
 
 	/* note conversions
