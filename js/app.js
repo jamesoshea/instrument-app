@@ -5,7 +5,12 @@ $(target).text(val);
 	console.log(envsettings);
 	synthInit();
 }
-
+function updateOutput2(val, target, param) {
+$(target).text(val);
+	env2settings[param] = Number(val);
+	console.log(env2settings);
+	synthInit();
+}
 $(document).ready(function(){
 
 	var rootNote = 46;
@@ -39,6 +44,7 @@ $(document).ready(function(){
 					e.preventRepeat();
 					var note = rootNote + i;
 					oscenv.noteOn(note, velocity);
+					osc2env.noteOn(note, velocity);
 					var ts = "#" + i;
 				  $(ts).addClass("button-primary");
 				  $("#note-display").text(noteToKey[note]);
@@ -46,7 +52,8 @@ $(document).ready(function(){
 					var ts = "#" + i;
 				  $(ts).removeClass("button-primary");
 					var note = rootNote + i;
-					oscenv.noteOff(note);	
+					oscenv.noteOff(note);
+					osc2env.noteOff(note);	
 				});		
 		}
 		//loop over the key object
@@ -146,8 +153,10 @@ $(document).ready(function(){
 
 	//waveform selectors
 	var selectors = ["#sin-sel", "#tri-sel", "#saw-sel", "#pulse-sel"];
+	var selectors2 = ["#sin-sel-2", "#tri-sel-2", "#saw-sel-2", "#pulse-sel-2"];
 	var waveforms = ["sin", "tri", "saw", "pulse"];
 	var waveFunctions = [];
+	var waveFunctions2 = [];
 
 	function waveSelector(i){
 		$(selectors[i]).on("click", function() {
@@ -157,8 +166,17 @@ $(document).ready(function(){
 		});
 	}
 
+	function waveSelector2(i){
+		$(selectors2[i]).on("click", function() {
+		console.log("butts");
+		osc2 = T(waveforms[i]);
+		synthInit();
+		});
+	}
+
 	for (var i = 0; i < selectors.length; i++) {
 		waveFunctions[i] = waveSelector(i);
+		waveFunctions2[i] = waveSelector2(i);
 	}
 
 	//note conversions
