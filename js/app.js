@@ -1,3 +1,11 @@
+//slider outputs
+function updateOutput(val, target, param) {
+$(target).text(val);
+	envsettings[param] = Number(val);
+	console.log(envsettings);
+	synthInit();
+}
+
 $(document).ready(function(){
 
 	var rootNote = 46;
@@ -41,13 +49,14 @@ $(document).ready(function(){
 					oscenv.noteOff(note);	
 				});		
 		}
+		//loop over the key object
 		for (var i = 0; i < 20; i++) {
 			keyFunctions[i] = keybindFunction(i);
 		}
 	}
 
 
-
+	//initial animation
 	keyboardJS.bind('', function(e){
 		$("#message").slideUp(1000);
 		$("#note-display").slideDown(600);
@@ -58,6 +67,7 @@ $(document).ready(function(){
 		$("#options").slideToggle(600);
 	});
 
+	//key change functions
 	function octaveUp() {
 		if (rootNote <= 77) {
 			rootNote += 12;
@@ -134,10 +144,24 @@ $(document).ready(function(){
 		noteUp();
 	});
 
+	//waveform selectors
+	var selectors = ["#sin-sel", "#tri-sel", "#saw-sel", "#pulse-sel"];
+	var waveforms = ["sin", "tri", "saw", "pulse"];
+	var waveFunctions = [];
 
+	function waveSelector(i){
+		$(selectors[i]).on("click", function() {
+		console.log("butts");
+		osc = T(waveforms[i]);
+		synthInit();
+		});
+	}
 
-		/* note conversions
-	--------------------------------------------------- */
+	for (var i = 0; i < selectors.length; i++) {
+		waveFunctions[i] = waveSelector(i);
+	}
+
+	//note conversions
 	var keyToNote = {}; // C8  == 108
 	var noteToKey = {}; // 108 ==  C8
 
