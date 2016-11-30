@@ -19,26 +19,7 @@ function updateOct2(val, target){
 $(document).ready(function(){
 	var diff = 0;
 	var rootNote = 58;
-	var keys = {"0": "z",
-							"1": "x",
-							"2": "c",
-							"3": "v",
-							"4": "b",
-							"5": "n",
-							"6": "m",
-							"7": "s",
-							"8": "d",
-							"9": "f",
-							"10": "g",
-							"11": "h",
-							"12": "j",
-							"13": "w",
-							"14": "e",
-							"15": "r",
-							"16": "t",
-							"17": "y",
-							"18": "u",
-							"19": "i"};
+	var keys = ["z", "x", "c", "v", "b", "n", "m", "s", "d", "f", "g", "h", "j", "w", "e", "r", "t", "y", "u", "i"];
 
 	//binds a certain key to a note, plays it, then adds some CSS abrakebabra!
 	function bindIt(rootNote) {
@@ -193,6 +174,10 @@ $(document).ready(function(){
 		waveFunctions[i] = waveSelector(i);
 		waveFunctions2[i] = waveSelector2(i);
 	}
+
+	$("#preset-sel").on("input", function(){
+		presetInit(this.value);
+	});
 
 	//note conversions
 	var keyToNote = {}; // C8  == 108
