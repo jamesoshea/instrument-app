@@ -16,6 +16,12 @@ input[type=range] {
 	height:10px;
 }
 
+select {
+	background-color: #5F594C;
+	color: #D6D2CA;
+	font-family: 'Oswald', sans-serif;
+}
+
 .container {
 	text-align:center;
 	background-color:#D6D2CA;
