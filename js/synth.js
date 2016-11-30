@@ -1,15 +1,15 @@
 var envsettings = {
-	a:0,
+	a:20,
 	d:250,
 	s:0.6,
-	r:0,
+	r:10,
 	v:127
 }
 var env2settings = {
-	a:0,
+	a:20,
 	d:250,
 	s:0.6,
-	r:0,
+	r:10,
 	v:127
 }
 
