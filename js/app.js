@@ -1,4 +1,3 @@
-
 //slider outputs
 function updateOutput(val, target, param) {
 	$(target).text(val);
@@ -18,8 +17,8 @@ function updateOct2(val, target){
 }
 
 $(document).ready(function(){
-
-	var rootNote = 46;
+	var diff = 0;
+	var rootNote = 58;
 	var keys = {"0": "z",
 							"1": "x",
 							"2": "c",
@@ -50,7 +49,7 @@ $(document).ready(function(){
 					e.preventRepeat();
 					var note = rootNote + i;
 					oscenv.noteOn(note, velocity1);
-					osc2env.noteOn(note, velocity2);
+					osc2env.noteOn(note + diff, velocity2);
 					var ts = "#" + i;
 				  $(ts).addClass("button-primary");
 				  $("#note-display").text(noteToKey[note]);
@@ -59,7 +58,7 @@ $(document).ready(function(){
 				  $(ts).removeClass("button-primary");
 					var note = rootNote + i;
 					oscenv.noteOff(note);
-					osc2env.noteOff(note);	
+					osc2env.noteOff(note + diff);	
 				});		
 		}
 		//loop over the key object
@@ -84,7 +83,6 @@ $(document).ready(function(){
 	function octaveUp() {
 		if (rootNote <= 77) {
 			rootNote += 12;
-			rootNote2 += 12;
 			keyboardJS.reset();
 			bindIt(rootNote);
 			$("#oct-up").animate({
@@ -100,7 +98,6 @@ $(document).ready(function(){
 	function octaveDown() {
 		if (rootNote > 32) {
 			rootNote -= 12;
-			rootNote2 -= 12;
 			keyboardJS.reset();
 			bindIt(rootNote);
 			$("#oct-down").animate({
@@ -116,7 +113,6 @@ $(document).ready(function(){
 	function noteUp() {
 		if (rootNote < 89) {
 			rootNote += 1;
-			rootNote2 += 1;
 			keyboardJS.reset();
 			bindIt(rootNote);
 			$("#note-up").animate({
@@ -132,7 +128,6 @@ $(document).ready(function(){
 	function noteDown() {
 		if (rootNote > 21) {
 			rootNote -= 1;
-			rootNote2 -= 1;
 			keyboardJS.reset();
 			bindIt(rootNote);
 			$("#note-down").animate({
@@ -159,6 +154,14 @@ $(document).ready(function(){
 
 	$("#note-up").on("click", function() {
 		noteUp();
+	});
+
+	$("#fd-oct-2").on("input", function() {
+		value = $(this).val();
+		diff = value * 12;
+		console.log(diff);
+		$("#oct-out-2").text(value);
+		bindIt();
 	});
 
 	//waveform selectors
