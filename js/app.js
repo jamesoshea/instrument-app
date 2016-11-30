@@ -175,6 +175,9 @@ $(document).ready(function(){
 		waveFunctions2[i] = waveSelector2(i);
 	}
 
+	$("#preset-sel").on("input", function(){
+		presetInit(this.value);
+	});
 
 	//note conversions
 	var keyToNote = {}; // C8  == 108
