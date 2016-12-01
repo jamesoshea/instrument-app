@@ -2,13 +2,11 @@
 function updateOutput(val, target, param) {
 	$(target).text(val);
 	envsettings[param] = Number(val);
-	console.log(envsettings);
 	synthInit();
 }
 function updateOutput2(val, target, param) {
 	$(target).text(val);
 	env2settings[param] = Number(val);
-	console.log(env2settings);
 	synthInit();
 }
 

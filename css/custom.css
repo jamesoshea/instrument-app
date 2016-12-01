@@ -51,14 +51,21 @@ select {
 	width:15%;
 }
 
+#left-column {
+	padding-left: 5%;
+}
+
 #menu-switch {
 	display:none;
 }
 
 #options {
-	display:none;
 }
 
 #note-display {
 	display:none;
+}
+
+#presets {
+	padding-top: 20%;
 }

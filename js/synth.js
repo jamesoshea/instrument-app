@@ -30,8 +30,8 @@ function synthInit() {
 }
 
 function presetInit(preNum) {
-	var	osc = presets[preNum].osc1;
-	var osc2 = presets[preNum].osc2;			
+	var osc = (presets[preNum].osc1);
+	var osc2 = (presets[preNum].osc2);
 	var	env = T("adsr", presets[preNum].envsettings, T("sin")).on("ended", function() {
 	  this.pause();
 	}).bang();
@@ -51,8 +51,8 @@ function presetInit(preNum) {
 	$("#sus-out").text(presets[preNum].envsettings.s);
 	$("#fd-rel").val(presets[preNum].envsettings.r);
 	$("#rel-out").text(presets[preNum].envsettings.r);
+	$("#fd-vol").val(presets[preNum].envsettings.v);
 	$("#vol-out").text(presets[preNum].envsettings.v);
-	$("#fd-vol").text(presets[preNum].envsettings.v);
 
 	$("#fd-att-2").val(presets[preNum].env2settings.a);
 	$("#att-out-2").text(presets[preNum].env2settings.a);
@@ -62,12 +62,11 @@ function presetInit(preNum) {
 	$("#sus-out-2").text(presets[preNum].env2settings.s);
 	$("#fd-rel-2").val(presets[preNum].env2settings.r);
 	$("#rel-out-2").text(presets[preNum].env2settings.r);
+	$("#fd-vol-2").val(presets[preNum].env2settings.v);
 	$("#vol-out-2").text(presets[preNum].env2settings.v);
-	$("#fd-vol-2").text(presets[preNum].env2settings.v);
 
 	var selector1 = "#" + presets[preNum].name1 + "-sel";
 	var selector2 = "#" + presets[preNum].name2 + "-sel-2";
-	console.log(selector1);
 
 	$(".wave-sel, .wave-sel-2").removeClass("button-primary");
 	$(selector1).addClass("button-primary");
