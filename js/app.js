@@ -152,19 +152,19 @@ $(document).ready(function(){
 
 	function waveSelector(i){
 		$(selectors[i]).on("click", function() {
-		$(".wave-sel").removeClass("button-primary");
-		$(selectors[i]).addClass("button-primary");
 		osc = T(waveforms[i]);
 		synthInit();
+		$(".wave-sel").removeClass("button-primary");
+		$(selectors[i]).addClass("button-primary");
 		});
 	}
 
 	function waveSelector2(i){
 		$(selectors2[i]).on("click", function() {
-		$(".wave-sel-2").removeClass("button-primary");
-		$(selectors2[i]).addClass("button-primary");
 		osc2 = T(waveforms[i]);
 		synthInit();
+		$(".wave-sel-2").removeClass("button-primary");
+		$(selectors2[i]).addClass("button-primary");
 		});
 	}
 

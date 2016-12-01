@@ -52,7 +52,7 @@ select {
 }
 
 #left-column {
-	padding-left: 5%;
+	padding-left: 10%;
 }
 
 #menu-switch {
@@ -60,6 +60,7 @@ select {
 }
 
 #options {
+	display:none;
 }
 
 #note-display {
