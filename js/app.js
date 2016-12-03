@@ -32,7 +32,7 @@ $(document).ready(function(){
 					//stops a key hold triggering the note over and over
 					e.preventRepeat();
 					var note = rootNote + i;
-					oscenv.noteOn(note, velocity1);
+					synth.noteOn(note);
 					osc2env.noteOn(note + diff, velocity2);
 					var ts = "#" + i;
 				  $(ts).addClass("button-primary");
@@ -41,7 +41,7 @@ $(document).ready(function(){
 					var ts = "#" + i;
 				  $(ts).removeClass("button-primary");
 					var note = rootNote + i;
-					oscenv.noteOff(note);
+					synth.noteOff(note);
 					osc2env.noteOff(note + diff);
 				});		
 		}
@@ -200,5 +200,5 @@ $(document).ready(function(){
 	}
 
 	bindIt(rootNote);
-	synthInit();	
+	synth2Init();	
 });

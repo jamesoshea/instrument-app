@@ -1,15 +1,13 @@
 var currentSettings = {	"prename": "INIT",
-		"osc1": T("sin"),
-		"name1": "sin",
+		"osc1": "saw",
 		"envsettings": {
-										a:20,
+										a:10,
 										d:250,
 										s:0.6,
 										r:10,
 										v:66
 		},
-		"osc2": T("sin"),
-		"name2": "sin",
+		"osc2": "saw",
 		"env2settings":{
 										a:20,
 										d:250,
@@ -17,8 +15,9 @@ var currentSettings = {	"prename": "INIT",
 										r:10,
 										v:66	
 		},
-		"lfo-shape": "sin",
-		"lfo-speed": ""
+		"freq": 8000,
+		"time": 1000,
+		"q": 5
 	}
 
 console.log(currentSettings);
@@ -30,28 +29,33 @@ function presetSelect(preNum){
 
 function synth2Init() {
 
-	var synth = T("SynthDef").play();
+	var	env2 = T("adsr", currentSettings.env2settings, T("sin")).on("ended", function() {
+  this.pause();
+	}).bang();
+	velocity2 = currentSettings.env2settings.v;
+	osc2env = T("OscGen", {osc:currentSettings.osc2, env:env2, mul:0.15}).play();
+
+	synth = T("SynthDef").play();
 
 	synth.def = function(opts) {
-	  var osc1, osc2, env;
-	  osc1 = currentSettings.osc1;
-	  osc2 = currentsettings.osc2;
-	  env  = T("linen", {s:450, r:250, lv:0.5}, osc1, osc2);
-	  return env.on("ended", opts.doneAction).bang();
+	  var osc, env;
+	  osc = T(currentSettings.osc1, {freq:opts.freq, mul:0.25});
+	  env  = T("adsr", currentSettings.envsettings, osc);
+	  var cutoff = T("env", {table:[currentSettings.freq, [opts.freq, currentSettings.time]]}).bang();
+	  var VCF    = T("lpf", {cutoff:cutoff, Q:currentSettings.q}, osc);
+	  var EG  = T("adsr", currentSettings.envsettings);
+	  var VCA = EG.append(VCF).bang();
+
+	  return VCA;
 	};
 
 }
 
 function synthInit() {		
 
-	var	env = T("adsr", currentSettings.envsettings, T("sin")).on("ended", function() {
-	  this.pause();
-	}).bang();
 	var	env2 = T("adsr", currentSettings.env2settings, T("sin")).on("ended", function() {
 	  this.pause();
 	}).bang();
-	velocity1 = currentSettings.envsettings.v;
-	oscenv = T("OscGen", {osc:currentSettings.osc1, env:env, mul:0.15}).play();
 	velocity2 = currentSettings.env2settings.v;
 	osc2env = T("OscGen", {osc:currentSettings.osc2, env:env2, mul:0.15}).play();
 
