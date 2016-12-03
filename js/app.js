@@ -1,12 +1,12 @@
 //slider outputs
 function updateOutput(val, target, param) {
 	$(target).text(val);
-	envsettings[param] = Number(val);
+	currentSettings.envsettings[param] = Number(val);
 	synthInit();
 }
 function updateOutput2(val, target, param) {
 	$(target).text(val);
-	env2settings[param] = Number(val);
+	currentSettings.env2settings[param] = Number(val);
 	synthInit();
 }
 
@@ -138,7 +138,6 @@ $(document).ready(function(){
 	$("#fd-oct-2").on("input", function() {
 		value = $(this).val();
 		diff = value * 12;
-		console.log(diff);
 		$("#oct-out-2").text(value);
 		bindIt();
 	});
@@ -152,7 +151,8 @@ $(document).ready(function(){
 
 	function waveSelector(i){
 		$(selectors[i]).on("click", function() {
-		osc = T(waveforms[i]);
+		currentSettings.osc1 = T(waveforms[i]);
+		currentSettings.name1 = waveforms[i];
 		synthInit();
 		$(".wave-sel").removeClass("button-primary");
 		$(selectors[i]).addClass("button-primary");
@@ -161,8 +161,11 @@ $(document).ready(function(){
 
 	function waveSelector2(i){
 		$(selectors2[i]).on("click", function() {
-		osc2 = T(waveforms[i]);
+		currentSettings.osc2 = T(waveforms[i]);
+		currentSettings.name2 = waveforms[i];
+
 		synthInit();
+		console.log(currentSettings.name2);
 		$(".wave-sel-2").removeClass("button-primary");
 		$(selectors2[i]).addClass("button-primary");
 		});
@@ -174,7 +177,7 @@ $(document).ready(function(){
 	}
 
 	$("#preset-sel").on("input", function(){
-		presetInit(this.value);
+		presetSelect(this.value);
 	});
 
 	//note conversions

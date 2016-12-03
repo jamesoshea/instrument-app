@@ -1,17 +1,17 @@
 var presets = [
-	{
+	{	"prename": "boring sines",
 		"envsettings": {
-										a:500,
-										d:0,
-										s:1,
-										r:0,
+										a:20,
+										d:250,
+										s:0.6,
+										r:10,
 										v:66
 		},
 		"env2settings":{
-										a:500,
-										d:0,
-										s:1,
-										r:0,
+										a:20,
+										d:250,
+										s:0.6,
+										r:10,
 										v:66	
 		},
 		"osc1": T("sin"),
@@ -19,9 +19,9 @@ var presets = [
 		"osc2": T("sin"),
 		"name2": "sin"
 	},
-	{
+	{	"prename": "horrid saws",
 		"envsettings": {
-										a:1000,
+										a:990,
 										d:250,
 										s:0.6,
 										r:10,
