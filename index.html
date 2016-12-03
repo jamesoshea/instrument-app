@@ -23,7 +23,7 @@
 <body>
   <div class="container">  
   <h1>keyslob</h1>
-  <h3 id="message">hey pat! "c" is the c above middle c.</h3>
+  <h3 id="message">use your keyboard to play notes. c is c4 by default</h3>
   <div class="row bank" id="bank-3">
     <div class="twelve columns">
       <button id="13" class="key">w</button>
@@ -63,17 +63,17 @@
   </div>
   <div id="options">
     <div class="row">
-      <div class="four columns" id="left-column">
-        <div id="presets">
-          <h5>presets</h5>
-          <select id="preset-sel">
-              <option value="0">Boring Sines</option>
-              <option value="1">Horrid Saws</option>
-            </optgroup>
-          </select>
+      <div class="four columns synth-params">
+        <h5>noise</h5>
+        <div class="sliders">
+          Volume: <input type="range" min="0" max="100" step="1" value="0" id="noise-vol" oninput="updateNoise(value, '#noise-out')"><span id="noise-out">0</span><br />
         </div>
-        <h5><i class="fa fa-minus" aria-hidden="true" id="note-down"></i>&nbsp;&nbsp;root note&nbsp;&nbsp;<i class="fa fa-plus" aria-hidden="true" id="note-up"></i></h5>
-        <h5><i class="fa fa-minus" aria-hidden="true" id="oct-down"></i>&nbsp;&nbsp;octave&nbsp;&nbsp;<i class="fa fa-plus" aria-hidden="true" id="oct-up"></i></h5>
+        <h5>LFO</h5>
+        <div class="sliders">
+          1: <input type="range" min="0" max="100" step="1" value="0" id="lfo-1" oninput="updateNoise(value, '#noise-out')"><span id="lfo-out-1">0</span><br />
+          2: <input type="range" min="0" max="100" step="1" value="0" id="lfo-2" oninput="updateNoise(value, '#noise-out')"><span id="lfo-out-2">0</span><br />
+          3: <input type="range" min="0" max="100" step="1" value="0" id="lfo-3" oninput="updateNoise(value, '#noise-out')"><span id="lfo-out-3">0</span><br />
+        </div>
       </div>
       <div class="four columns synth-params">
         <h5>oscillator 1</h5>
@@ -112,6 +112,22 @@
       </div>
     </div>
     <hr />
+  </div>
+  <div class="row">
+    <div class="six columns">
+      <div id="presets">
+      <h5>presets</h5>
+      <select id="preset-sel">
+          <option value="0">Boring Sines</option>
+          <option value="1">Horrid Saws</option>
+        </optgroup>
+      </select>
+      </div>
+    </div>
+    <div class="six columns">
+    <h5><i class="fa fa-minus" aria-hidden="true" id="note-down"></i>&nbsp;&nbsp;root note&nbsp;&nbsp;<i class="fa fa-plus" aria-hidden="true" id="note-up"></i></h5>
+    <h5><i class="fa fa-minus" aria-hidden="true" id="oct-down"></i>&nbsp;&nbsp;octave&nbsp;&nbsp;<i class="fa fa-plus" aria-hidden="true" id="oct-up"></i></h5>
+    </div>
   </div>
   <a href="https://github.com/jamesoshea/instrument-app/" target="blank"><i class="fa fa-github fa-2x hello" aria-hidden="true"></i></a>
 </div>

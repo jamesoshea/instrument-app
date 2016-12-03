@@ -1,5 +1,5 @@
 var currentSettings = {	"prename": "INIT",
-		"osc1": T("sin"),
+		"osc1": T("pink"),
 		"name1": "sin",
 		"envsettings": {
 										a:20,
@@ -18,7 +18,9 @@ var currentSettings = {	"prename": "INIT",
 										v:66	
 		},
 		"noiseosc" : T("pink"),
-		"noisevel": "0"
+		"noisevol": 0,
+		"lfo-shape": "sin",
+		"lfo-speed": ""
 	}
 
 console.log(currentSettings);
@@ -39,6 +41,9 @@ function synthInit() {
 	oscenv = T("OscGen", {osc:currentSettings.osc1, env:env, mul:0.15}).play();
 	velocity2 = currentSettings.env2settings.v;
 	osc2env = T("OscGen", {osc:currentSettings.osc2, env:env2, mul:0.15}).play();
+	noiseVel = currentSettings.noisevol;
+	console.log(currentSettings.noiseosc);
+	noiseOsc = T("OscGen", {osc:currentSettings.noiseosc, mul:0.15}).play();
 
 	$("#fd-att").val(currentSettings.envsettings.a);
 	$("#att-out").text(currentSettings.envsettings.a);
