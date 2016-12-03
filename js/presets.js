@@ -21,7 +21,7 @@ var presets = [
 	},
 	{	"prename": "horrid saws",
 		"envsettings": {
-										a:1000,
+										a:990,
 										d:250,
 										s:0.6,
 										r:10,
