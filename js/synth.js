@@ -73,6 +73,13 @@ function synth2Init() {
 	$("#fd-vol-2").val(currentSettings.env2settings.v);
 	$("#vol-out-2").text(currentSettings.env2settings.v);
 
+	$("#fil-freq").val(currentSettings.filtersettings.freq);
+	$("#fil-freq-out").text(currentSettings.filtersettings.freq);
+	$("#fil-time").val(currentSettings.filtersettings.time);
+	$("#fil-time-out").text(currentSettings.filtersettings.time);
+	$("#fil-q").val(currentSettings.filtersettings.q);
+	$("#fil-q-out").text(currentSettings.filtersettings.q);
+
 	var selector1 = "#" + currentSettings.osc1 + "-sel";
 	var selector2 = "#" + currentSettings.osc2 + "-sel-2";
 
@@ -80,13 +87,4 @@ function synth2Init() {
 	$(selector1).addClass("button-primary");
 	$(selector2).addClass("button-primary");
 
-}
-
-function synthInit() {		
-
-	var	env2 = T("adsr", currentSettings.env2settings, T("sin")).on("ended", function() {
-	  this.pause();
-	}).bang();
-	velocity2 = currentSettings.env2settings.v;
-	osc2env = T("OscGen", {osc:currentSettings.osc2, env:env2, mul:0.15}).play();
 }
