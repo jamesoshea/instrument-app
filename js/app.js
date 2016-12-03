@@ -2,17 +2,17 @@
 function updateOutput(val, target, param) {
 	$(target).text(val);
 	currentSettings.envsettings[param] = Number(val);
-	synthInit();
+	synth2Init();
 }
 function updateOutput2(val, target, param) {
 	$(target).text(val);
 	currentSettings.env2settings[param] = Number(val);
-	synthInit();
+	synth2Init();
 }
-function updateNoise(val, target) {
+function updateFilter(val, target, param) {
 	$(target).text(val);
-	currentSettings.noisevol = Number(val);
-	synthInit();
+	currentSettings.filtersettings[param] = Number(val);
+	synth2Init();
 }
 
 function updateOct2(val, target){
@@ -156,9 +156,9 @@ $(document).ready(function(){
 
 	function waveSelector(i){
 		$(selectors[i]).on("click", function() {
-		currentSettings.osc1 = T(waveforms[i]);
-		currentSettings.name1 = waveforms[i];
-		synthInit();
+		currentSettings.osc1 = waveforms[i];
+		console.log(currentSettings.osc1);
+		synth2Init();
 		$(".wave-sel").removeClass("button-primary");
 		$(selectors[i]).addClass("button-primary");
 		});
@@ -166,11 +166,8 @@ $(document).ready(function(){
 
 	function waveSelector2(i){
 		$(selectors2[i]).on("click", function() {
-		currentSettings.osc2 = T(waveforms[i]);
-		currentSettings.name2 = waveforms[i];
-
-		synthInit();
-		console.log(currentSettings.name2);
+		currentSettings.osc2 = waveforms[i];
+		synth2Init();
 		$(".wave-sel-2").removeClass("button-primary");
 		$(selectors2[i]).addClass("button-primary");
 		});

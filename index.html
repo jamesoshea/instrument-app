@@ -22,114 +22,106 @@
 
 <body>
   <div class="container">  
-  <h1>keyslob</h1>
-  <h3 id="message">use your keyboard to play notes. c is c4 by default</h3>
-  <div class="row bank" id="bank-3">
-    <div class="twelve columns">
-      <button id="13" class="key">w</button>
-      <button id="14" class="key">e</button>
-      <button id="15" class="key">r</button>
-      <button id="16" class="key">t</button>
-      <button id="17" class="key">y</button>
-      <button id="18" class="key">u</button>
-      <button id="19" class="key">i</button>
-    </div>
-  </div>
-  <div class="row bank" id="bank-2">
-    <div class="twelve columns">
-      <button id="7" class="key">s</button>
-      <button id="8" class="key">d</button>
-      <button id="9" class="key">f</button>
-      <button id="10" class="key">g</button>
-      <button id="11" class="key">h</button>
-      <button id="12" class="key">j</button>
-    </div>
-  </div>
-  <div class="row bank" id="bank-1">
-    <div class="twelve columns">
-      <button id="0" class="key">z</button>
-      <button id="1" class="key">x</button>
-      <button id="2" class="key">c</button>
-      <button id="3" class="key">v</button>
-      <button id="4" class="key">b</button>
-      <button id="5" class="key">n</button>
-      <button id="6" class="key">m</button>
-    </div>
-  </div>
-  <h3 id="note-display"></h3>
-  <div id="menu-switch">
-    <p>options</p>
-    <hr /> 
-  </div>
-  <div id="options">
-    <div class="row">
-      <div class="four columns synth-params">
-        <h5>noise</h5>
-        <div class="sliders">
-          Volume: <input type="range" min="0" max="100" step="1" value="0" id="noise-vol" oninput="updateNoise(value, '#noise-out')"><span id="noise-out">0</span><br />
-        </div>
-        <h5>LFO</h5>
-        <div class="sliders">
-          1: <input type="range" min="0" max="100" step="1" value="0" id="lfo-1" oninput="updateNoise(value, '#noise-out')"><span id="lfo-out-1">0</span><br />
-          2: <input type="range" min="0" max="100" step="1" value="0" id="lfo-2" oninput="updateNoise(value, '#noise-out')"><span id="lfo-out-2">0</span><br />
-          3: <input type="range" min="0" max="100" step="1" value="0" id="lfo-3" oninput="updateNoise(value, '#noise-out')"><span id="lfo-out-3">0</span><br />
-        </div>
-      </div>
-      <div class="four columns synth-params">
-        <h5>oscillator 1</h5>
-        <div class="row">
-        <div class="row">
-          <button id="sin-sel" class="wave-sel button-primary">sin</button>
-          <button id="tri-sel" class="wave-sel">tri</button>
-          <button id="saw-sel" class="wave-sel">saw</button>
-          <button id="pulse-sel" class="wave-sel">pulse</button>          
-        </div>           
-        </div>
-        <div class="sliders">
-          Attack: <input type="range" min="0" max="1000" step="10" value="20" id="fd-att" oninput="updateOutput(value, '#att-out', 'a')"><span id="att-out">0</span><br />
-          Decay:<input type="range" min="0" max="1000" step="10" value="250" id="fd-dec" oninput="updateOutput(value, '#dec-out', 'd')"><span id="dec-out">250</span><br />
-          Sustain:<input type="range" min="0" max="1" step="0.01" value="0.6" id="fd-sus" oninput="updateOutput(value, '#sus-out', 's')"><span id="sus-out">0.6</span><br />
-          Release:<input type="range" min="0" max="500" step="5" value="10" id="fd-rel" oninput="updateOutput(value, '#rel-out', 'r')"><span id="rel-out">0</span><br />
-          Volume:<input type="range" min="0" max="127" step="1" value="127" id="fd-vol" oninput="updateOutput(value, '#vol-out', 'v')"><span id="vol-out">127</span>
-        </div>
-      </div>
-      <div class="four columns synth-params">
-        <h5>oscillator 2</h5>
-        <div class="row">
-          <button id="sin-sel-2" class="wave-sel-2 button-primary">sin</button>
-          <button id="tri-sel-2" class="wave-sel-2">tri</button>
-          <button id="saw-sel-2" class="wave-sel-2">saw</button>
-          <button id="pulse-sel-2" class="wave-sel-2">pulse</button>          
-        </div>
-        <div class="sliders">
-          Attack: <input type="range" min="0" max="1000" step="10" value="20" id="fd-att-2" oninput="updateOutput2(value, '#att-out-2', 'a')"><span id="att-out-2">0</span><br />
-          Decay:<input type="range" min="0" max="1000" step="10" value="250" id="fd-dec-2" oninput="updateOutput2(value, '#dec-out-2', 'd')"><span id="dec-out-2">250</span><br />
-          Sustain:<input type="range" min="0" max="1" step="0.01" value="0.6" id="fd-sus-2" oninput="updateOutput2(value, '#sus-out-2', 's')"><span id="sus-out-2">0.6</span><br />
-          Release:<input type="range" min="0" max="500" step="5" value="10" id="fd-rel-2" oninput="updateOutput2(value, '#rel-out-2', 'r')"><span id="rel-out-2">0</span><br />
-          Volume:<input type="range" min="0" max="127" step="1" value="127" id="fd-vol-2" oninput="updateOutput2(value, '#vol-out-2', 'v')"><span id="vol-out-2">127</span><br />
-          Octave:<input type="range" min="-2" max="0" step="1" value="0" id="fd-oct-2" ><span id="oct-out-2">0</span>
-        </div>
+    <h1>keyslob</h1>
+    <h3 id="message">use your keyboard to play notes. c is c4 by default</h3>
+    <div class="row bank" id="bank-3">
+      <div class="twelve columns">
+        <button id="13" class="key">w</button>
+        <button id="14" class="key">e</button>
+        <button id="15" class="key">r</button>
+        <button id="16" class="key">t</button>
+        <button id="17" class="key">y</button>
+        <button id="18" class="key">u</button>
+        <button id="19" class="key">i</button>
       </div>
     </div>
-    <hr />
-  </div>
-  <div class="row">
-    <div class="six columns">
-      <div id="presets">
-      <h5>presets</h5>
-      <select id="preset-sel">
-          <option value="0">Boring Sines</option>
-          <option value="1">Horrid Saws</option>
-        </optgroup>
-      </select>
+    <div class="row bank" id="bank-2">
+      <div class="twelve columns">
+        <button id="7" class="key">s</button>
+        <button id="8" class="key">d</button>
+        <button id="9" class="key">f</button>
+        <button id="10" class="key">g</button>
+        <button id="11" class="key">h</button>
+        <button id="12" class="key">j</button>
       </div>
     </div>
-    <div class="six columns">
-    <h5><i class="fa fa-minus" aria-hidden="true" id="note-down"></i>&nbsp;&nbsp;root note&nbsp;&nbsp;<i class="fa fa-plus" aria-hidden="true" id="note-up"></i></h5>
-    <h5><i class="fa fa-minus" aria-hidden="true" id="oct-down"></i>&nbsp;&nbsp;octave&nbsp;&nbsp;<i class="fa fa-plus" aria-hidden="true" id="oct-up"></i></h5>
+    <div class="row bank" id="bank-1">
+      <div class="twelve columns">
+        <button id="0" class="key">z</button>
+        <button id="1" class="key">x</button>
+        <button id="2" class="key">c</button>
+        <button id="3" class="key">v</button>
+        <button id="4" class="key">b</button>
+        <button id="5" class="key">n</button>
+        <button id="6" class="key">m</button>
+      </div>
     </div>
+    <h3 id="note-display"></h3>
+    <div id="menu-switch">
+      <p>options</p>
+      <hr /> 
+    </div>
+    <div id="options">
+      <div class="row">
+        <div class="four columns synth-params">
+          <h5>filter (osc 1)</h5>
+          <div class="sliders">
+            freq: <input type="range" min="80" max="20000" step="1" value="8000" id="lfo-1" oninput="updateFilter(value, '#fil-freq-out', 'freq')"><span id="fil-freq-out">8000</span><br />
+            time: <input type="range" min="0" max="10000" step="1" value="500" id="lfo-2" oninput="updateFilter(value, '#fil-time-out', 'time')"><span id="fil-time-out">500</span><br />
+            q: <input type="range" min="0" max="20" step="1" value="5" id="lfo-3" oninput="updateFilter(value, '#fil-q-out', 'q')"><span id="fil-q-out">5</span><br />
+          </div>
+          <div id="presets">
+            <h5>presets</h5>
+            <select id="preset-sel">
+              <optgroup>
+                <option value="0">INIT</option>
+                <option value="1">Horrid Saws</option>
+              </optgroup>
+            </select>
+          </div>
+        </div>
+        <div class="four columns synth-params">
+          <h5>oscillator 1</h5>
+          <div class="row">
+            <button id="sin-sel" class="wave-sel button-primary">sin</button>
+            <button id="tri-sel" class="wave-sel">tri</button>
+            <button id="saw-sel" class="wave-sel">saw</button>
+            <button id="pulse-sel" class="wave-sel">pulse</button>                   
+          </div>
+          <div class="sliders">
+            Attack: <input type="range" min="0" max="1000" step="10" value="20" id="fd-att" oninput="updateOutput(value, '#att-out', 'a')"><span id="att-out">0</span><br />
+            Decay:<input type="range" min="0" max="1000" step="10" value="250" id="fd-dec" oninput="updateOutput(value, '#dec-out', 'd')"><span id="dec-out">250</span><br />
+            Sustain:<input type="range" min="0" max="1" step="0.01" value="0.6" id="fd-sus" oninput="updateOutput(value, '#sus-out', 's')"><span id="sus-out">0.6</span><br />
+            Release:<input type="range" min="0" max="500" step="5" value="10" id="fd-rel" oninput="updateOutput(value, '#rel-out', 'r')"><span id="rel-out">0</span>
+          </div>
+        </div>
+        <div class="four columns synth-params">
+          <h5>oscillator 2</h5>
+          <div class="row">
+            <button id="sin-sel-2" class="wave-sel-2 button-primary">sin</button>
+            <button id="tri-sel-2" class="wave-sel-2">tri</button>
+            <button id="saw-sel-2" class="wave-sel-2">saw</button>
+            <button id="pulse-sel-2" class="wave-sel-2">pulse</button>          
+          </div>
+          <div class="sliders">
+            Attack: <input type="range" min="0" max="1000" step="10" value="20" id="fd-att-2" oninput="updateOutput2(value, '#att-out-2', 'a')"><span id="att-out-2">0</span><br />
+            Decay:<input type="range" min="0" max="1000" step="10" value="250" id="fd-dec-2" oninput="updateOutput2(value, '#dec-out-2', 'd')"><span id="dec-out-2">250</span><br />
+            Sustain:<input type="range" min="0" max="1" step="0.01" value="0.6" id="fd-sus-2" oninput="updateOutput2(value, '#sus-out-2', 's')"><span id="sus-out-2">0.6</span><br />
+            Release:<input type="range" min="0" max="500" step="5" value="10" id="fd-rel-2" oninput="updateOutput2(value, '#rel-out-2', 'r')"><span id="rel-out-2">0</span><br />
+            Volume:<input type="range" min="0" max="127" step="1" value="127" id="fd-vol-2" oninput="updateOutput2(value, '#vol-out-2', 'v')"><span id="vol-out-2">127</span><br />
+            Octave:<input type="range" min="-2" max="0" step="1" value="0" id="fd-oct-2" ><span id="oct-out-2">0</span>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="twelve columns">
+          <h5><i class="fa fa-minus" aria-hidden="true" id="note-down"></i>&nbsp;&nbsp;root note&nbsp;&nbsp;<i class="fa fa-plus" aria-hidden="true" id="note-up"></i></h5>
+          <h5><i class="fa fa-minus" aria-hidden="true" id="oct-down"></i>&nbsp;&nbsp;octave&nbsp;&nbsp;<i class="fa fa-plus" aria-hidden="true" id="oct-up"></i></h5>
+        </div>
+        <hr />
+      </div>
+    </div>
+    <a href="https://github.com/jamesoshea/instrument-app/" target="blank"><i class="fa fa-github fa-2x hello" aria-hidden="true"></i></a>
   </div>
-  <a href="https://github.com/jamesoshea/instrument-app/" target="blank"><i class="fa fa-github fa-2x hello" aria-hidden="true"></i></a>
-</div>
 </body>
 </html>
