@@ -1,42 +1,50 @@
 var presets = [
-	{	"prename": "boring sines",
+{	
+		"prename": "INIT",
+		"osc1": "saw",
 		"envsettings": {
-										a:20,
+										a:10,
 										d:250,
 										s:0.6,
 										r:10,
 										v:66
 		},
+		"osc2": "saw",
 		"env2settings":{
 										a:20,
 										d:250,
 										s:0.6,
 										r:10,
-										v:66	
+										v:127	
 		},
-		"osc1": T("sin"),
-		"name1": "sin",
-		"osc2": T("sin"),
-		"name2": "sin"
+		"filtersettings": {
+			"freq": 8000,
+			"time": 1000,
+			"q": 5
+		}
 	},
-	{	"prename": "horrid saws",
+{	
+		"prename": "INIT",
+		"osc1": "saw",
 		"envsettings": {
-										a:990,
+										a:10,
 										d:250,
 										s:0.6,
 										r:10,
-										v:127
+										v:66
 		},
+		"osc2": "saw",
 		"env2settings":{
 										a:20,
 										d:250,
 										s:0.6,
 										r:10,
-										v:64
+										v:127	
 		},
-		"osc1": T("sin"),
-		"name1": "sin",
-		"osc2": T("saw"),
-		"name2": "saw"
+		"filtersettings": {
+			"freq": 8000,
+			"time": 1000,
+			"q": 5
+		}
 	}
 ];

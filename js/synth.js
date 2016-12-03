@@ -1,44 +1,55 @@
-var currentSettings = {	"prename": "INIT",
-		"osc1": T("sin"),
-		"name1": "sin",
+var currentSettings = {	
+		"prename": "INIT",
+		"osc1": "saw",
 		"envsettings": {
-										a:20,
+										a:10,
 										d:250,
 										s:0.6,
 										r:10,
 										v:66
 		},
-		"osc2": T("sin"),
-		"name2": "sin",
+		"osc2": "saw",
 		"env2settings":{
 										a:20,
 										d:250,
 										s:0.6,
 										r:10,
-										v:66	
+										v:127	
 		},
-		"noiseosc" : T("pink"),
-		"noisevel": "0"
+		"filtersettings": {
+			"freq": 8000,
+			"time": 1000,
+			"q": 5
+		}
 	}
-
-console.log(currentSettings);
 
 function presetSelect(preNum){
 	currentSettings = presets[preNum];
-	synthInit();
+	synth2Init();
 }
 
-function synthInit() {		
-	var	env = T("adsr", currentSettings.envsettings, T("sin")).on("ended", function() {
-	  this.pause();
-	}).bang();
+function synth2Init() {
+
+	synth = T("SynthDef").play();
+
+	synth.def = function(opts) {
+	  var osc, env;
+	  osc = T(currentSettings.osc1, {freq:opts.freq, mul:0.25});
+	  env  = T("adsr", currentSettings.envsettings, osc);
+	  var cutoff = T("env", {table:[currentSettings.filtersettings.freq, [opts.freq, currentSettings.filtersettings.time]]}).bang();
+	  var VCF    = T("lpf", {cutoff:cutoff, Q:currentSettings.filtersettings.q}, osc);
+	  var EG  = T("adsr", currentSettings.envsettings);
+	  var VCA = EG.append(VCF).bang();
+
+	  return VCA;
+	};
+
+	var osc2 = T(currentSettings.osc2);
 	var	env2 = T("adsr", currentSettings.env2settings, T("sin")).on("ended", function() {
-	  this.pause();
+  this.pause();
 	}).bang();
-	velocity1 = currentSettings.envsettings.v;
-	oscenv = T("OscGen", {osc:currentSettings.osc1, env:env, mul:0.15}).play();
 	velocity2 = currentSettings.env2settings.v;
-	osc2env = T("OscGen", {osc:currentSettings.osc2, env:env2, mul:0.15}).play();
+	osc2env = T("OscGen", {osc:osc2, env:env2, mul:0.15}).play();
 
 	$("#fd-att").val(currentSettings.envsettings.a);
 	$("#att-out").text(currentSettings.envsettings.a);
@@ -62,10 +73,20 @@ function synthInit() {
 	$("#fd-vol-2").val(currentSettings.env2settings.v);
 	$("#vol-out-2").text(currentSettings.env2settings.v);
 
-	var selector1 = "#" + currentSettings.name1 + "-sel";
-	var selector2 = "#" + currentSettings.name2 + "-sel-2";
+	var selector1 = "#" + currentSettings.osc1 + "-sel";
+	var selector2 = "#" + currentSettings.osc2 + "-sel-2";
 
 	$(".wave-sel, .wave-sel-2").removeClass("button-primary");
 	$(selector1).addClass("button-primary");
 	$(selector2).addClass("button-primary");
+
+}
+
+function synthInit() {		
+
+	var	env2 = T("adsr", currentSettings.env2settings, T("sin")).on("ended", function() {
+	  this.pause();
+	}).bang();
+	velocity2 = currentSettings.env2settings.v;
+	osc2env = T("OscGen", {osc:currentSettings.osc2, env:env2, mul:0.15}).play();
 }
