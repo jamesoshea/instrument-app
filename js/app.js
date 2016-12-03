@@ -12,6 +12,7 @@ function updateOutput2(val, target, param) {
 function updateNoise(val, target) {
 	$(target).text(val);
 	currentSettings.noisevol = Number(val);
+	synthInit();
 }
 
 function updateOct2(val, target){
@@ -33,7 +34,6 @@ $(document).ready(function(){
 					var note = rootNote + i;
 					oscenv.noteOn(note, velocity1);
 					osc2env.noteOn(note + diff, velocity2);
-					noiseOsc.noteOn(note)
 					var ts = "#" + i;
 				  $(ts).addClass("button-primary");
 				  $("#note-display").text(noteToKey[note]);
@@ -42,8 +42,7 @@ $(document).ready(function(){
 				  $(ts).removeClass("button-primary");
 					var note = rootNote + i;
 					oscenv.noteOff(note);
-					osc2env.noteOff(note + diff);	
-					noiseOsc.noteOff(note)
+					osc2env.noteOff(note + diff);
 				});		
 		}
 		//loop over the key object

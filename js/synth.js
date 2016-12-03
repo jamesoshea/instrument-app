@@ -1,5 +1,5 @@
 var currentSettings = {	"prename": "INIT",
-		"osc1": T("pink"),
+		"osc1": T("sin"),
 		"name1": "sin",
 		"envsettings": {
 										a:20,
@@ -17,8 +17,6 @@ var currentSettings = {	"prename": "INIT",
 										r:10,
 										v:66	
 		},
-		"noiseosc" : T("pink"),
-		"noisevol": 0,
 		"lfo-shape": "sin",
 		"lfo-speed": ""
 	}
@@ -30,7 +28,22 @@ function presetSelect(preNum){
 	synthInit();
 }
 
+function synth2Init() {
+
+	var synth = T("SynthDef").play();
+
+	synth.def = function(opts) {
+	  var osc1, osc2, env;
+	  osc1 = currentSettings.osc1;
+	  osc2 = currentsettings.osc2;
+	  env  = T("linen", {s:450, r:250, lv:0.5}, osc1, osc2);
+	  return env.on("ended", opts.doneAction).bang();
+	};
+
+}
+
 function synthInit() {		
+
 	var	env = T("adsr", currentSettings.envsettings, T("sin")).on("ended", function() {
 	  this.pause();
 	}).bang();
@@ -41,9 +54,6 @@ function synthInit() {
 	oscenv = T("OscGen", {osc:currentSettings.osc1, env:env, mul:0.15}).play();
 	velocity2 = currentSettings.env2settings.v;
 	osc2env = T("OscGen", {osc:currentSettings.osc2, env:env2, mul:0.15}).play();
-	noiseVel = currentSettings.noisevol;
-	console.log(currentSettings.noiseosc);
-	noiseOsc = T("OscGen", {osc:currentSettings.noiseosc, mul:0.15}).play();
 
 	$("#fd-att").val(currentSettings.envsettings.a);
 	$("#att-out").text(currentSettings.envsettings.a);
