@@ -16,6 +16,7 @@ var currentSettings = {
 										r:10,
 										v:127	
 		},
+		"octave": 0,
 		"filtersettings": {
 			"freq": 8000,
 			"time": 1000,

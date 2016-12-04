@@ -20,7 +20,6 @@ function updateOct2(val, target){
 }
 
 $(document).ready(function(){
-	var diff = 0;
 	var rootNote = 58;
 	var keys = ["z", "x", "c", "v", "b", "n", "m", "s", "d", "f", "g", "h", "j", "w", "e", "r", "t", "y", "u", "i"];
 
@@ -33,7 +32,7 @@ $(document).ready(function(){
 					e.preventRepeat();
 					var note = rootNote + i;
 					synth.noteOn(note);
-					osc2env.noteOn(note + diff, velocity2);
+					osc2env.noteOn(note + (currentSettings.octave * 12), velocity2);
 					var ts = "#" + i;
 				  $(ts).addClass("button-primary");
 				  $("#note-display").text(noteToKey[note]);
@@ -42,7 +41,7 @@ $(document).ready(function(){
 				  $(ts).removeClass("button-primary");
 					var note = rootNote + i;
 					synth.noteOff(note);
-					osc2env.noteOff(note + diff);
+					osc2env.noteOff(note + (currentSettings.octave * 12));
 				});		
 		}
 		//loop over the key object
@@ -142,7 +141,7 @@ $(document).ready(function(){
 
 	$("#fd-oct-2").on("input", function() {
 		value = $(this).val();
-		diff = value * 12;
+		currentSettings.octave = value;
 		$("#oct-out-2").text(value);
 		bindIt();
 	});

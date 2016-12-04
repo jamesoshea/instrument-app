@@ -10,6 +10,7 @@ var presets = [
 										v:66
 		},
 		"osc2": "saw",
+		"octave": 0,
 		"env2settings":{
 										a:20,
 										d:250,
