@@ -53,7 +53,6 @@ $(document).ready(function(){
 
 	//initial animation
 	keyboardJS.bind('', function(e){
-		$("#message").slideUp(1000);
 		$("#note-display").slideDown(600);
 		$("#menu-switch").slideDown(600);
 	});
