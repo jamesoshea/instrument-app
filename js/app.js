@@ -19,6 +19,12 @@ function updateOct2(val, target){
 	$(target).text(val);
 }
 
+//filter pass selector
+function filterSelect(value) {
+	currentSettings.filtersettings.hilo = value;
+	synth2Init();
+}
+
 $(document).ready(function(){
 	var rootNote = 58;
 	var keys = ["z", "x", "c", "v", "b", "n", "m", "s", "d", "f", "g", "h", "j", "w", "e", "r", "t", "y", "u", "i"];

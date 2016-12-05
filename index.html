@@ -68,6 +68,11 @@
             freq: <input type="range" min="80" max="20000" step="1" value="8000" id="fil-freq" oninput="updateFilter(value, '#fil-freq-out', 'freq')"><span id="fil-freq-out">8000</span><br />
             time: <input type="range" min="0" max="10000" step="1" value="500" id="fil-time" oninput="updateFilter(value, '#fil-time-out', 'time')"><span id="fil-time-out">500</span><br />
             q: <input type="range" min="0" max="20" step="1" value="5" id="fil-q" oninput="updateFilter(value, '#fil-q-out', 'q')"><span id="fil-q-out">5</span><br />
+            <form>
+              <input type="radio" name="filter" value="lpf" id="fil-lpf" checked onclick="filterSelect(value)">lpf
+              <input type="radio" name="filter" value="bpf" id="fil-bpf" onclick="filterSelect(value)">bpf
+              <input type="radio" name="filter" value="hpf" id="fil-hpf" onclick="filterSelect(value)">hpf
+            </form>
           </div>
           <div id="presets">
             <h5>presets</h5>

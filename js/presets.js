@@ -44,6 +44,7 @@ var presets = [
 										v:127	
 		},
 		"filtersettings": {
+			"hilo": "lpf",
 			"freq": 2425,
 			"time": 571,
 			"q": 3
@@ -69,6 +70,7 @@ var presets = [
 										v:65	
 		},
 		"filtersettings": {
+			"hilo": "lpf",
 			"freq": 20000,
 			"time": 1000,
 			"q": 0

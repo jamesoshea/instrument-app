@@ -18,6 +18,7 @@ var currentSettings = {
 		},
 		"octave": 0,
 		"filtersettings": {
+			"hilo": "lpf",
 			"freq": 8000,
 			"time": 1000,
 			"q": 5
@@ -38,7 +39,7 @@ function synth2Init() {
 	  osc = T(currentSettings.osc1, {freq:opts.freq, mul:0.25});
 	  env  = T("adsr", currentSettings.envsettings, osc);
 	  var cutoff = T("env", {table:[currentSettings.filtersettings.freq, [opts.freq, currentSettings.filtersettings.time]]}).bang();
-	  var VCF    = T("lpf", {cutoff:cutoff, Q:currentSettings.filtersettings.q}, osc);
+	  var VCF    = T(currentSettings.filtersettings.hilo, {cutoff:cutoff, Q:currentSettings.filtersettings.q}, osc);
 	  var EG  = T("adsr", currentSettings.envsettings);
 	  var VCA = EG.append(VCF).bang();
 
@@ -87,5 +88,7 @@ function synth2Init() {
 	$(".wave-sel, .wave-sel-2").removeClass("button-primary");
 	$(selector1).addClass("button-primary");
 	$(selector2).addClass("button-primary");
+
+	document.getElementById("fil-" + currentSettings.filtersettings.hilo).checked = true;
 
 }
