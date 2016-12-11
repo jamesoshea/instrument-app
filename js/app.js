@@ -45,19 +45,31 @@ $(document).ready(function(){
 	function bindIt(rootNote) {
 		var keyFunctions = [];
 		function keybindFunction(i) {
+			var key = document.getElementById(i);
+			var note = rootNote + i;
+			var ts = "#" + i;
+			key.addEventListener('touchstart', function(e){
+				synth.noteOn(note);
+			  $(ts).addClass("button-primary");
+			  $("#note-display").text(noteToKey[note]);
+				e.preventDefault();
+			});
+			key.addEventListener('touchend', function(e){
+				synth.noteOff(note);
+			  $(ts).removeClass("button-primary");
+				synth.noteOff(note);
+				e.preventDefault();
+			});
+
 			keyboardJS.bind(keys[i], function(e) {
 				//stops a key hold triggering the note over and over
 				e.preventRepeat();
-				var note = rootNote + i;
 				synth.noteOn(note);
 				osc2env.noteOn(note + (currentSettings.octave * 12), velocity2);
-				var ts = "#" + i;
 			  $(ts).addClass("button-primary");
 			  $("#note-display").text(noteToKey[note]);
 			}, function(e) {
-				var ts = "#" + i;
 			  $(ts).removeClass("button-primary");
-				var note = rootNote + i;
 				synth.noteOff(note);
 				osc2env.noteOff(note + (currentSettings.octave * 12));
 			});		
