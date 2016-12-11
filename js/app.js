@@ -1,4 +1,12 @@
-var hammertime = new Hammer();
+window.addEventListener('load', function() {
+	var z = document.getElementById("1");
+	z.addEventListener('touchstart', function(e){
+		alert('hello from listener z');
+	});
+	z.addEventListener('touchend', function(e){
+		alert('goodbye from listener z');
+	});
+});
 
 //slider outputs
 function updateOutput(val, target, param) {
