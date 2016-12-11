@@ -3,11 +3,6 @@ body {
 	color:#5F594C;
 }
 
-h1 {
-	padding-top: 15px;
-	padding-bottom: 1.5rem;
-}
-
 i {
 	color:#5F594C;
 }
@@ -49,6 +44,10 @@ select {
 
 .wave-sel-2 {
 	width:15%;
+}
+
+#bank-3 {
+	padding-top: 2rem;
 }
 
 #left-column {
