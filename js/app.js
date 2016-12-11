@@ -1,3 +1,13 @@
+window.addEventListener('load', function() {
+	var z = document.getElementById("1");
+	z.addEventListener('touchstart', function(e){
+		alert('hello from listener z');
+	});
+	z.addEventListener('touchend', function(e){
+		alert('goodbye from listener z');
+	});
+});
+
 //slider outputs
 function updateOutput(val, target, param) {
 	$(target).text(val);
@@ -33,22 +43,22 @@ $(document).ready(function(){
 	function bindIt(rootNote) {
 		var keyFunctions = [];
 		function keybindFunction(i) {
-				keyboardJS.bind(keys[i], function(e) {
-					//stops a key hold triggering the note over and over
-					e.preventRepeat();
-					var note = rootNote + i;
-					synth.noteOn(note);
-					osc2env.noteOn(note + (currentSettings.octave * 12), velocity2);
-					var ts = "#" + i;
-				  $(ts).addClass("button-primary");
-				  $("#note-display").text(noteToKey[note]);
-				}, function(e) {
-					var ts = "#" + i;
-				  $(ts).removeClass("button-primary");
-					var note = rootNote + i;
-					synth.noteOff(note);
-					osc2env.noteOff(note + (currentSettings.octave * 12));
-				});		
+			keyboardJS.bind(keys[i], function(e) {
+				//stops a key hold triggering the note over and over
+				e.preventRepeat();
+				var note = rootNote + i;
+				synth.noteOn(note);
+				osc2env.noteOn(note + (currentSettings.octave * 12), velocity2);
+				var ts = "#" + i;
+			  $(ts).addClass("button-primary");
+			  $("#note-display").text(noteToKey[note]);
+			}, function(e) {
+				var ts = "#" + i;
+			  $(ts).removeClass("button-primary");
+				var note = rootNote + i;
+				synth.noteOff(note);
+				osc2env.noteOff(note + (currentSettings.octave * 12));
+			});		
 		}
 		//loop over the key object
 		for (var i = 0; i < 20; i++) {
