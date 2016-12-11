@@ -1,30 +1,18 @@
-window.addEventListener('load', function() {
-	var z = document.getElementById("0");
-	z.addEventListener('touchstart', function(e){
-		synth.noteOn(58);
-		e.preventDefault();
-	});
-	z.addEventListener('touchend', function(e){
-		synth.noteOff(58);
-		e.preventDefault();
-	});
-});
-
 //slider outputs
 function updateOutput(val, target, param) {
 	$(target).text(val);
 	currentSettings.envsettings[param] = Number(val);
-	synth2Init();
+	synthInit();
 }
 function updateOutput2(val, target, param) {
 	$(target).text(val);
 	currentSettings.env2settings[param] = Number(val);
-	synth2Init();
+	synthInit();
 }
 function updateFilter(val, target, param) {
 	$(target).text(val);
 	currentSettings.filtersettings[param] = Number(val);
-	synth2Init();
+	synthInit();
 }
 
 function updateOct2(val, target){
@@ -34,7 +22,7 @@ function updateOct2(val, target){
 //filter pass selector
 function filterSelect(value) {
 	currentSettings.filtersettings.hilo = value;
-	synth2Init();
+	synthInit();
 }
 
 $(document).ready(function(){
@@ -48,11 +36,12 @@ $(document).ready(function(){
 			var key = document.getElementById(i);
 			var note = rootNote + i;
 			var ts = "#" + i;
+			var nd = document.getElementById("note-display");
 			key.addEventListener('touchstart', function(e){
 				synth.noteOn(note);
 				osc2env.noteOn(note + (currentSettings.octave * 12), currentSettings.env2settings.v);
 			  $(ts).addClass("button-primary");
-			  $("#note-display").text(noteToKey[note]);
+			  $(nd).text(noteToKey[note]);
 				e.preventDefault();
 			});
 			key.addEventListener('touchend', function(e){
@@ -68,7 +57,7 @@ $(document).ready(function(){
 				synth.noteOn(note);
 				osc2env.noteOn(note + (currentSettings.octave * 12),  currentSettings.env2settings.v);
 			  $(ts).addClass("button-primary");
-			  $("#note-display").text(noteToKey[note]);
+			  $(nd).text(noteToKey[note]);
 			}, function(e) {
 			  $(ts).removeClass("button-primary");
 				synth.noteOff(note);
@@ -83,92 +72,65 @@ $(document).ready(function(){
 
 
 	//initial animation
-	keyboardJS.bind('', function(e){
+	function hello() {
 		$("#note-display").slideDown(600);
 		$("#menu-switch").slideDown(600);
-	});
+	}
 
-	
+	keyboardJS.bind('', function(e){
+		hello();
+	});
+	document.getElementById("main").addEventListener('touchstart', function(e){
+		hello();
+	});
 
 	$("#menu-switch").on("click", function() {
 		$("#options").slideToggle(600);
 	});
 
-	//key change functions
-	function octaveUp() {
-		if (rootNote <= 77) {
-			rootNote += 12;
-			keyboardJS.reset();
-			bindIt(rootNote);
-			$("#oct-up").animate({
-				opacity: 0.5
-			}, 250, function(){
-				$("#oct-up").animate({
-					opacity: 1
-				}, 250);
-			});
-		}
-	}
+	//key changes
 
-	function octaveDown() {
+	function shifter(el) {
+		keyboardJS.reset();
+		bindIt(rootNote);
+		$(el).animate({
+			opacity: 0.5
+		}, 250, function(){
+			$(el).animate({
+				opacity: 1
+			}, 250);
+		});
+	}
+	$("#oct-down").on("click", function() {
 		if (rootNote > 32) {
 			rootNote -= 12;
-			keyboardJS.reset();
-			bindIt(rootNote);
-			$("#oct-down").animate({
-				opacity: 0.5
-			}, 250, function(){
-				$("#oct-down").animate({
-					opacity: 1
-				}, 250);
-			});
+			var element = "#" + this.id;
+			shifter(element);
 		}
-	}
-
-	function noteUp() {
-		if (rootNote < 89) {
-			rootNote += 1;
-			keyboardJS.reset();
-			bindIt(rootNote);
-			$("#note-up").animate({
-				opacity: 0.5
-			}, 250, function(){
-				$("#note-up").animate({
-					opacity: 1
-				}, 250);
-			});
-		}	
-	}
-
-	function noteDown() {
-		if (rootNote > 21) {
-			rootNote -= 1;
-			keyboardJS.reset();
-			bindIt(rootNote);
-			$("#note-down").animate({
-				opacity: 0.5
-			}, 250, function(){
-				$("#note-down").animate({
-					opacity: 1
-				}, 250);
-			});
-		}		
-	}
-
-	$("#oct-down").on("click", function() {
-		octaveDown();
 	});
 
 	$("#oct-up").on("click", function() {
-		octaveUp();
+		if (rootNote <= 77) {
+			rootNote += 12;
+			var element = "#" + this.id;
+			shifter(element);
+		}
 	});
 
 	$("#note-down").on("click", function() {
-		noteDown();
+		if (rootNote > 21) {
+			rootNote -= 1;
+			var element = "#" + this.id;
+			shifter(element);
+		}		
 	});
 
 	$("#note-up").on("click", function() {
-		noteUp();
+		if (rootNote < 89) {
+			rootNote += 1;
+			var element = "#" + this.id;
+			shifter(element);
+		}	
 	});
 
 	$("#fd-oct-2").on("input", function() {
@@ -189,7 +151,7 @@ $(document).ready(function(){
 		$(selectors[i]).on("click", function() {
 		currentSettings.osc1 = waveforms[i];
 		console.log(currentSettings.osc1);
-		synth2Init();
+		synthInit();
 		$(".wave-sel").removeClass("button-primary");
 		$(selectors[i]).addClass("button-primary");
 		});
@@ -198,7 +160,7 @@ $(document).ready(function(){
 	function waveSelector2(i){
 		$(selectors2[i]).on("click", function() {
 		currentSettings.osc2 = waveforms[i];
-		synth2Init();
+		synthInit();
 		$(".wave-sel-2").removeClass("button-primary");
 		$(selectors2[i]).addClass("button-primary");
 		});
@@ -209,6 +171,7 @@ $(document).ready(function(){
 		waveFunctions2[i] = waveSelector2(i);
 	}
 
+	//preset selector
 	$("#preset-sel").on("input", function(){
 		presetSelect(this.value);
 	});
@@ -226,7 +189,8 @@ $(document).ready(function(){
 		keyToNote[name] = n;
 		noteToKey[n] = name;
 	}
-
+	//inital key and touch binding
 	bindIt(rootNote);
-	synth2Init();	
+	
+	synthInit();	
 });

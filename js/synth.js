@@ -27,10 +27,10 @@ var currentSettings = {
 
 function presetSelect(preNum){
 	currentSettings = presets[preNum];
-	synth2Init();
+	synthInit();
 }
 
-function synth2Init() {
+function synthInit() {
 
 	synth = T("SynthDef").play();
 
