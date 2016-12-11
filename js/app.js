@@ -2,9 +2,11 @@ window.addEventListener('load', function() {
 	var z = document.getElementById("1");
 	z.addEventListener('touchstart', function(e){
 		alert('hello from listener z');
+		e.preventDefault();
 	});
 	z.addEventListener('touchend', function(e){
 		alert('goodbye from listener z');
+		e.preventDefault();
 	});
 });
 
