@@ -50,14 +50,15 @@ $(document).ready(function(){
 			var ts = "#" + i;
 			key.addEventListener('touchstart', function(e){
 				synth.noteOn(note);
+				osc2env.noteOn(note + (currentSettings.octave * 12), currentSettings.env2settings.v);
 			  $(ts).addClass("button-primary");
 			  $("#note-display").text(noteToKey[note]);
 				e.preventDefault();
 			});
 			key.addEventListener('touchend', function(e){
 				synth.noteOff(note);
+				osc2env.noteOff(note + (currentSettings.octave * 12));
 			  $(ts).removeClass("button-primary");
-				synth.noteOff(note);
 				e.preventDefault();
 			});
 
@@ -65,7 +66,7 @@ $(document).ready(function(){
 				//stops a key hold triggering the note over and over
 				e.preventRepeat();
 				synth.noteOn(note);
-				osc2env.noteOn(note + (currentSettings.octave * 12), velocity2);
+				osc2env.noteOn(note + (currentSettings.octave * 12),  currentSettings.env2settings.v);
 			  $(ts).addClass("button-primary");
 			  $("#note-display").text(noteToKey[note]);
 			}, function(e) {
@@ -86,6 +87,8 @@ $(document).ready(function(){
 		$("#note-display").slideDown(600);
 		$("#menu-switch").slideDown(600);
 	});
+
+	
 
 	$("#menu-switch").on("click", function() {
 		$("#options").slideToggle(600);
