@@ -25,13 +25,17 @@ function filterSelect(value) {
 	synthInit();
 }
 
-$(document).ready(function(){
+$(document).ready(function() {
 	var rootNote = 58;
 	var keys = ["z", "x", "c", "v", "b", "n", "m", "s", "d", "f", "g", "h", "j", "w", "e", "r", "t", "y", "u", "i"];
 
 	//binds a certain key to a note, adding event listeners, then adds some CSS abrakebabra!
 	function bindIt(rootNote) {
 		var keyFunctions = [];
+		//loop over the key object
+		for (var i = 0; i < 20; i++) {
+			keyFunctions[i] = keybindFunction(i);
+		}
 		function keybindFunction(i) {
 			var key = document.getElementById(i);
 			var note = rootNote + i;
@@ -64,13 +68,8 @@ $(document).ready(function(){
 				synth.noteOff(note);
 				osc2env.noteOff(note + (currentSettings.octave * 12));
 			});
-		};
-		//loop over the key object
-		for (var i = 0; i < 20; i++) {
-			keyFunctions[i] = keybindFunction(i);
 		}
 	}
-
 
 	//initial animation
 	function hello() {
@@ -90,7 +89,6 @@ $(document).ready(function(){
 	});
 
 	//key changes
-
 	function shifter(el) {
 		keyboardJS.reset();
 		bindIt(rootNote);
@@ -190,8 +188,10 @@ $(document).ready(function(){
 		keyToNote[name] = n;
 		noteToKey[n] = name;
 	}
+
 	//inital key and touch binding
 	bindIt(rootNote);
 
+	//finally, fire up that synth!
 	synthInit();
 });
