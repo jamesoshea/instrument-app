@@ -29,7 +29,7 @@ $(document).ready(function(){
 	var rootNote = 58;
 	var keys = ["z", "x", "c", "v", "b", "n", "m", "s", "d", "f", "g", "h", "j", "w", "e", "r", "t", "y", "u", "i"];
 
-	//binds a certain key to a note, plays it, then adds some CSS abrakebabra!
+	//binds a certain key to a note, adding event listeners, then adds some CSS abrakebabra!
 	function bindIt(rootNote) {
 		var keyFunctions = [];
 		function keybindFunction(i) {
@@ -54,6 +54,7 @@ $(document).ready(function(){
 			keyboardJS.bind(keys[i], function(e) {
 				//stops a key hold triggering the note over and over
 				e.preventRepeat();
+
 				synth.noteOn(note);
 				osc2env.noteOn(note + (currentSettings.octave * 12),  currentSettings.env2settings.v);
 			  $(ts).addClass("button-primary");
@@ -62,8 +63,8 @@ $(document).ready(function(){
 			  $(ts).removeClass("button-primary");
 				synth.noteOff(note);
 				osc2env.noteOff(note + (currentSettings.octave * 12));
-			});		
-		}
+			});
+		};
 		//loop over the key object
 		for (var i = 0; i < 20; i++) {
 			keyFunctions[i] = keybindFunction(i);
@@ -122,7 +123,7 @@ $(document).ready(function(){
 			rootNote -= 1;
 			var element = "#" + this.id;
 			shifter(element);
-		}		
+		}
 	});
 
 	$("#note-up").on("click", function() {
@@ -130,7 +131,7 @@ $(document).ready(function(){
 			rootNote += 1;
 			var element = "#" + this.id;
 			shifter(element);
-		}	
+		}
 	});
 
 	$("#fd-oct-2").on("input", function() {
@@ -191,6 +192,6 @@ $(document).ready(function(){
 	}
 	//inital key and touch binding
 	bindIt(rootNote);
-	
-	synthInit();	
+
+	synthInit();
 });
