@@ -56,6 +56,7 @@ function synthInit() {
 	velocity2 = currentSettings.env2settings.v;
 	osc2env = T("OscGen", { osc: osc2, env: env2, mul: 0.15 }).play();
 
+	//set correct text and values for sliders
 	$("#fd-att").val(currentSettings.envsettings.a);
 	$("#att-out").text(currentSettings.envsettings.a);
 	$("#fd-dec").val(currentSettings.envsettings.d);

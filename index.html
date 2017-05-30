@@ -21,7 +21,7 @@
 </head>
 
 <body>
-  <div class="container" id="main">  
+  <div class="container" id="main">
     <div class="row bank" id="bank-3">
       <div class="twelve columns">
         <button id="13" class="key">w</button>
@@ -53,11 +53,11 @@
         <button id="5" class="key">n</button>
         <button id="6" class="key">m</button>
       </div>
-    </div>
+    </div> <!-- end keys -->
     <h3 id="note-display"></h3>
     <div id="menu-switch">
       <p>options</p>
-      <hr /> 
+      <hr />
     </div>
     <div id="options">
       <div class="row">
@@ -90,7 +90,7 @@
             <button id="sin-sel" class="wave-sel button-primary">sin</button>
             <button id="tri-sel" class="wave-sel">tri</button>
             <button id="saw-sel" class="wave-sel">saw</button>
-            <button id="pulse-sel" class="wave-sel">pulse</button>                   
+            <button id="pulse-sel" class="wave-sel">pulse</button>
           </div>
           <div class="sliders">
             Attack: <input type="range" min="0" max="1000" step="10" value="20" id="fd-att" oninput="updateOutput(value, '#att-out', 'a')"><span id="att-out">0</span><br />
@@ -105,7 +105,7 @@
             <button id="sin-sel-2" class="wave-sel-2 button-primary">sin</button>
             <button id="tri-sel-2" class="wave-sel-2">tri</button>
             <button id="saw-sel-2" class="wave-sel-2">saw</button>
-            <button id="pulse-sel-2" class="wave-sel-2">pulse</button>          
+            <button id="pulse-sel-2" class="wave-sel-2">pulse</button>
           </div>
           <div class="sliders">
             Attack: <input type="range" min="0" max="1000" step="10" value="20" id="fd-att-2" oninput="updateOutput2(value, '#att-out-2', 'a')"><span id="att-out-2">0</span><br />
@@ -124,7 +124,7 @@
         </div>
         <hr />
       </div>
-    </div>
+    </div> <!--  end options div-->
     <a href="https://github.com/jamesoshea/instrument-app/" target="blank"><i class="fa fa-github fa-2x hello" aria-hidden="true"></i></a>
   </div>
 </body>

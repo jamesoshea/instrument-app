@@ -1,4 +1,4 @@
-//slider outputs
+//update synth settings and slider text on input events
 function updateOutput(val, target, param) {
 	$(target).text(val);
 	currentSettings.envsettings[param] = Number(val);
@@ -19,17 +19,18 @@ function updateOct2(val, target){
 	$(target).text(val);
 }
 
-//filter pass selector
 function filterSelect(value) {
 	currentSettings.filtersettings.hilo = value;
 	synthInit();
 }
 
+
+
 $(document).ready(function() {
 	var rootNote = 58;
 	var keys = ["z", "x", "c", "v", "b", "n", "m", "s", "d", "f", "g", "h", "j", "w", "e", "r", "t", "y", "u", "i"];
 
-	//binds a certain key to a note, adding event listeners, then adds some CSS abrakebabra!
+	//binds a certain key to a note, adding event listeners
 	function bindIt(rootNote) {
 		var keyFunctions = [];
 		//loop over the key object
@@ -55,10 +56,10 @@ $(document).ready(function() {
 				e.preventDefault();
 			});
 
+			//bind takes two functions as arguments, for touchstart and touchend
 			keyboardJS.bind(keys[i], function(e) {
 				//stops a key hold triggering the note over and over
 				e.preventRepeat();
-
 				synth.noteOn(note);
 				osc2env.noteOn(note + (currentSettings.octave * 12),  currentSettings.env2settings.v);
 			  $(ts).addClass("button-primary");
@@ -71,7 +72,7 @@ $(document).ready(function() {
 		}
 	}
 
-	//initial animation
+	//animation for first key press
 	function hello() {
 		$("#note-display").slideDown(600);
 		$("#menu-switch").slideDown(600);
@@ -101,6 +102,7 @@ $(document).ready(function() {
 		});
 	}
 	$("#oct-down").on("click", function() {
+		//prevent binding to notes out of synth's range
 		if (rootNote > 32) {
 			rootNote -= 12;
 			var element = "#" + this.id;
