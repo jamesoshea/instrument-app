@@ -28,7 +28,7 @@ function filterSelect(value) {
 
 $(document).ready(function() {
 	var rootNote = 58;
-	var keys = ["z", "x", "c", "v", "b", "n", "m", "s", "d", "f", "g", "h", "j", "w", "e", "r", "t", "y", "u", "i"];
+	var keys = ['z', 'x', 'c', 'v', 'b', 'n', 'm', 's', 'd', 'f', 'g', 'h', 'j', 'w', 'e', 'r', 't', 'y', 'u', 'i'];
 
 	//binds a certain key to a note, adding event listeners
 	function bindIt(rootNote) {
@@ -40,19 +40,19 @@ $(document).ready(function() {
 		function keybindFunction(i) {
 			var key = document.getElementById(i);
 			var note = rootNote + i;
-			var ts = "#" + i;
-			var nd = document.getElementById("note-display");
+			var ts = '#' + i;
+			var nd = document.getElementById('note-display');
 			key.addEventListener('touchstart', function(e){
 				synth.noteOn(note);
 				osc2env.noteOn(note + (currentSettings.octave * 12), currentSettings.env2settings.v);
-			  $(ts).addClass("button-primary");
+			  $(ts).addClass('button-primary');
 			  $(nd).text(noteToKey[note]);
 				e.preventDefault();
 			});
 			key.addEventListener('touchend', function(e){
 				synth.noteOff(note);
 				osc2env.noteOff(note + (currentSettings.octave * 12));
-			  $(ts).removeClass("button-primary");
+			  $(ts).removeClass('button-primary');
 				e.preventDefault();
 			});
 
@@ -62,10 +62,10 @@ $(document).ready(function() {
 				e.preventRepeat();
 				synth.noteOn(note);
 				osc2env.noteOn(note + (currentSettings.octave * 12),  currentSettings.env2settings.v);
-			  $(ts).addClass("button-primary");
+			  $(ts).addClass('button-primary');
 			  $(nd).text(noteToKey[note]);
 			}, function(e) {
-			  $(ts).removeClass("button-primary");
+			  $(ts).removeClass('button-primary');
 				synth.noteOff(note);
 				osc2env.noteOff(note + (currentSettings.octave * 12));
 			});
@@ -74,19 +74,19 @@ $(document).ready(function() {
 
 	//animation for first key press
 	function hello() {
-		$("#note-display").slideDown(600);
-		$("#menu-switch").slideDown(600);
+		$('#note-display').slideDown(600);
+		$('#menu-switch').slideDown(600);
 	}
 
 	keyboardJS.bind('', function(e){
 		hello();
 	});
-	document.getElementById("main").addEventListener('touchstart', function(e){
+	document.getElementById('main').addEventListener('touchstart', function(e){
 		hello();
 	});
 
-	$("#menu-switch").on("click", function() {
-		$("#options").slideToggle(600);
+	$('#menu-switch').on('click', function() {
+		$('#options').slideToggle(600);
 	});
 
 	//key changes
@@ -101,69 +101,69 @@ $(document).ready(function() {
 			}, 250);
 		});
 	}
-	$("#oct-down").on("click", function() {
+	$('#oct-down').on('click', function() {
 		//prevent binding to notes out of synth's range
 		if (rootNote > 32) {
 			rootNote -= 12;
-			var element = "#" + this.id;
+			var element = '#' + this.id;
 			shifter(element);
 		}
 	});
 
-	$("#oct-up").on("click", function() {
+	$('#oct-up').on('click', function() {
 		if (rootNote <= 77) {
 			rootNote += 12;
-			var element = "#" + this.id;
+			var element = '#' + this.id;
 			shifter(element);
 		}
 	});
 
-	$("#note-down").on("click", function() {
+	$('#note-down').on('click', function() {
 		if (rootNote > 21) {
 			rootNote -= 1;
-			var element = "#" + this.id;
+			var element = '#' + this.id;
 			shifter(element);
 		}
 	});
 
-	$("#note-up").on("click", function() {
+	$('#note-up').on('click', function() {
 		if (rootNote < 89) {
 			rootNote += 1;
-			var element = "#" + this.id;
+			var element = '#' + this.id;
 			shifter(element);
 		}
 	});
 
-	$("#fd-oct-2").on("input", function() {
+	$('#fd-oct-2').on('input', function() {
 		value = $(this).val();
 		currentSettings.octave = value;
-		$("#oct-out-2").text(value);
+		$('#oct-out-2').text(value);
 		bindIt();
 	});
 
 	//waveform selectors
-	var selectors = ["#sin-sel", "#tri-sel", "#saw-sel", "#pulse-sel"];
-	var selectors2 = ["#sin-sel-2", "#tri-sel-2", "#saw-sel-2", "#pulse-sel-2"];
-	var waveforms = ["sin", "tri", "saw", "pulse"];
+	var selectors = ['#sin-sel', '#tri-sel', '#saw-sel', '#pulse-sel'];
+	var selectors2 = ['#sin-sel-2', '#tri-sel-2', '#saw-sel-2', '#pulse-sel-2'];
+	var waveforms = ['sin', 'tri', 'saw', 'pulse'];
 	var waveFunctions = [];
 	var waveFunctions2 = [];
 
 	function waveSelector(i){
-		$(selectors[i]).on("click", function() {
-		currentSettings.osc1 = waveforms[i];
-		console.log(currentSettings.osc1);
-		synthInit();
-		$(".wave-sel").removeClass("button-primary");
-		$(selectors[i]).addClass("button-primary");
+		$(selectors[i]).on('click', function() {
+			currentSettings.osc1 = waveforms[i];
+			console.log(currentSettings.osc1);
+			synthInit();
+			$('.wave-sel').removeClass('button-primary');
+			$(selectors[i]).addClass('button-primary');
 		});
 	}
 
 	function waveSelector2(i){
-		$(selectors2[i]).on("click", function() {
-		currentSettings.osc2 = waveforms[i];
-		synthInit();
-		$(".wave-sel-2").removeClass("button-primary");
-		$(selectors2[i]).addClass("button-primary");
+		$(selectors2[i]).on('click', function() {
+			currentSettings.osc2 = waveforms[i];
+			synthInit();
+			$('.wave-sel-2').removeClass('button-primary');
+			$(selectors2[i]).addClass('button-primary');
 		});
 	}
 
@@ -173,7 +173,7 @@ $(document).ready(function() {
 	}
 
 	//preset selector
-	$("#preset-sel").on("input", function(){
+	$('#preset-sel').on('input', function(){
 		presetSelect(this.value);
 	});
 
